@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bookstore-graphql-deployment
+  labels:
+    app: bookstore-graphql
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: bookstore-graphql
+  template:
+    metadata:
+      name: bookstore-graphql-deployment
+      labels:
+        app: bookstore-graphql
+    spec:
+      containers:
+        - name: bookstore-graphql-app
+          image: krish2091/bookstore-graphql:v5.0.0
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8910
+              protocol: TCP
+      restartPolicy: Always
+      
